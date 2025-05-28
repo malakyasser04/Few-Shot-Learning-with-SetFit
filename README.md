@@ -14,11 +14,6 @@ The project performs binary sentiment classification (positive/negative) on IMDB
   - False Negatives (FN): 13
   - True Positives (TP): 38
 
-## Repository Structure
-
-- `extranlp (3).ipynb`: Jupyter Notebook with data preprocessing, model training, and evaluation.
-- `README.md`: This file.
-
 ## Requirements
 
 ```bash
