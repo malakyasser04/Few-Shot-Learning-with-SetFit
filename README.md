@@ -1,67 +1,110 @@
-# Few-Shot-Learning-with-SetFit
-# IMDB Sentiment Analysis with SetFit
-This project performs sentiment analysis on the IMDB 50k movie reviews dataset using the SetFit classifier, a few-shot learning model. Trained on 200 samples, it achieves 72% test accuracy on 100 samples.
-# Overview
+# Sentiment Analysis of IMDB Movie Reviews with SetFit
 
-Dataset: IMDB 50k (25,000 train, 25,000 test, balanced positive/negative).
-Preprocessing: Clean text (lowercase, remove HTML/URLs), remove stop words, lemmatize.
-Model: SetFit (paraphrase-MiniLM-L3-v2).
-Results:
-Test Accuracy: 72%
-Training Accuracy: 98%
-Confusion Matrix:
-True Negatives (TN): 34
-False Positives (FP): 15
-False Negatives (FN): 13
-True Positives (TP): 38
+This repository implements sentiment analysis on the IMDB 50k movie reviews dataset using the SetFit classifier, a few-shot learning model. The model is trained on 200 samples and achieves 72% test accuracy on 100 samples.
 
+## Project Overview
 
+The project performs binary sentiment classification (positive/negative) on IMDB movie reviews. Key steps include:
+- **Dataset**: IMDB 50k dataset (25,000 train, 25,000 test samples, balanced).
+- **Preprocessing**: Text cleaning (lowercase, remove HTML/URLs), stop word removal, lemmatization.
+- **Model**: SetFit classifier (`paraphrase-MiniLM-L3-v2`).
+- **Evaluation**: Test accuracy of 72%, training accuracy of 98%, with confusion matrix:
+  - True Negatives (TN): 34
+  - False Positives (FP): 15
+  - False Negatives (FN): 13
+  - True Positives (TP): 38
 
+## Repository Structure
 
+- `extranlp (3).ipynb`: Jupyter Notebook with data preprocessing, model training, and evaluation.
+- `README.md`: This file.
 
-# Files
+## Requirements
 
-extranlp (3).ipynb: Notebook with preprocessing, training, and evaluation.
-README.md: This file.
+```bash
+numpy==1.23.5
+pandas
+scikit-learn
+nltk
+setfit==1.0.3
+sentence-transformers==2.2.2
+torch==2.0.1
+jax==0.4.13
+jaxlib==0.4.13
+transformers==4.34.1
+seaborn
+matplotlib
+```
 
-# Setup
+## Setup Instructions
 
-Clone Repository:
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+1. **Clone Repository**:
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
+   cd your-repo-name
+   ```
 
+2. **Set Up Virtual Environment**:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Windows: venv\Scripts\activate
+   ```
 
-Virtual Environment:
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+3. **Install Dependencies**:
+   ```bash
+   pip install numpy==1.23.5 jax==0.4.13 jaxlib==0.4.13 transformers==4.34.1 sentence-transformers==2.2.2 setfit==1.0.3 torch==2.0.1 pandas scikit-learn nltk seaborn matplotlib
+   ```
 
+4. **Download NLTK Data**:
+   ```python
+   import nltk
+   nltk.download('stopwords')
+   nltk.download('wordnet')
+   nltk.download('omw-1.4')
+   ```
 
-Install Dependencies:
-pip install numpy==1.23.5 pandas scikit-learn nltk setfit==1.0.3 sentence-transformers==2.2.2 torch==2.0.1 jax==0.4.13 jaxlib==0.4.13 transformers==4.34.1 seaborn matplotlib
+5. **Dataset**: Download `train.csv` and `test.csv` from [Kaggle](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-50k-movie-reviews-test-your-bert) and place in `data/` or update notebook paths.
 
+## Running the Code
 
-NLTK Data:
-import nltk
-nltk.download('stopwords')
-nltk.download('wordnet')
-nltk.download('omw-1.4')
+1. Launch Jupyter Notebook:
+   ```bash
+   jupyter notebook
+   ```
+2. Open and run `extranlp (3).ipynb` cells to preprocess data, train the SetFit model, and evaluate results.
+3. Outputs: Test accuracy (72%), training accuracy (98%), and confusion matrix heatmap.
 
+## Results
 
-Dataset: Download train.csv and test.csv from Kaggle and place in data/ or update paths in notebook.
+- **Test Accuracy**: 72% (100 samples).
+- **Training Accuracy**: 98% (200 samples).
+- **Confusion Matrix**:
+  - TN: 34 (correct negative predictions)
+  - FP: 15 (negative predicted as positive)
+  - FN: 13 (positive predicted as negative)
+  - TP: 38 (correct positive predictions)
 
+The model shows slight positive bias (more FP than FN) and potential overfitting due to high training accuracy.
 
+## Usage
 
-# Usage
-Predict sentiment on new text:
+To predict sentiment on new text:
+```python
 from setfit import SetFitClassifier
 clf = SetFitClassifier("paraphrase-MiniLM-L3-v2")
-# Load or retrain model
-text = "This movie was amazing!"
-cleaned = clean_text(text)  # From notebook
+# Load trained model or retrain
+new_text = "This movie was amazing!"
+cleaned = clean_text(new_text)  # From notebook
 normalized = normalize_text(cleaned)  # From notebook
-pred = clf.predict([normalized])
-print("Sentiment:", "Positive" if pred[0] == 1 else "Negative")
+prediction = clf.predict([normalized])
+print("Predicted sentiment:", "Positive" if prediction[0] == 1 else "Negative")
+```
 
+## Authors
 
+- **Malak Yasser** - [malak.eid.2023@aiu.edu.eg](mailto:malak.eid.2023@aiu.edu.eg)
+- **Fares Hassan** - [fares.ghoniem.2023@aiu.edu.eg](mailto:fares.ghoniem.2023@aiu.edu.eg)
 
+## License
 
+MIT License. See [LICENSE](LICENSE) file.
