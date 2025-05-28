@@ -65,14 +65,6 @@ matplotlib
 
 5. **Dataset**: Download `train.csv` and `test.csv` from [Kaggle](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-50k-movie-reviews-test-your-bert) and place in `data/` or update notebook paths.
 
-## Running the Code
-
-1. Launch Jupyter Notebook:
-   ```bash
-   jupyter notebook
-   ```
-2. Open and run `extranlp (3).ipynb` cells to preprocess data, train the SetFit model, and evaluate results.
-3. Outputs: Test accuracy (72%), training accuracy (98%), and confusion matrix heatmap.
 
 ## Results
 
@@ -100,11 +92,4 @@ prediction = clf.predict([normalized])
 print("Predicted sentiment:", "Positive" if prediction[0] == 1 else "Negative")
 ```
 
-## Authors
 
-- **Malak Yasser** - [malak.eid.2023@aiu.edu.eg](mailto:malak.eid.2023@aiu.edu.eg)
-- **Fares Hassan** - [fares.ghoniem.2023@aiu.edu.eg](mailto:fares.ghoniem.2023@aiu.edu.eg)
-
-## License
-
-MIT License. See [LICENSE](LICENSE) file.
